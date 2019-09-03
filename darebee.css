@@ -1,0 +1,91 @@
+/*------------------------------------------------------------/
+/ Global Styles                                               /
+/------------------------------------------------------------*/
+
+body {
+  background-color: #ddd;
+  font-family: sans-serif;
+}
+
+#workoutWindow {
+  height: 80vh;
+  width: 90vw;
+  margin: 0 auto;
+  border: .2em solid black;
+  border-radius: .3em;
+  background-color: white;
+}
+
+#startButton {
+  width: 45vw;
+  margin: 0 auto;
+  margin-top: 4vh;
+  cursor: default;
+  text-align: center;
+  font-size: 1.5em;
+  border-bottom: .2em solid rgba(0, 0, 0, 0);
+  filter: opacity(0%);
+  transition: border 500ms, filter 3000ms;
+}
+
+#startButton:hover {
+  border-bottom: .2em solid red;
+}
+
+/*------------------------------------------------------------/
+/ Intro Styles                                                /
+/------------------------------------------------------------*/
+
+#logoDiv {
+  width: 50vw;
+  margin: 0 auto;
+  margin-top: 20vh;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 2em;
+  border: .1em solid black;
+  border-radius: .3em;
+  filter: opacity(0%);
+  transition: filter 3000ms;
+}
+
+/*------------------------------------------------------------/
+/ Exercise Window Styles                                      /
+/------------------------------------------------------------*/
+
+#exercisePreview {
+
+}
+
+#exerciseImg {
+
+}
+
+#exerciseInfo {
+  display: flex;
+  justify-content: center;
+}
+
+#exerciseNumber {
+  margin-right: .25em;
+  padding: .25em;
+  font-size: 2em;
+  color: white;
+  background-color: black;
+  border-radius: .3em;
+}
+
+#exerciseName {
+  margin-bottom: .8em;
+  font-size: 1.5em;
+  border-bottom: .2em solid black;
+}
+
+#timerDiv {
+  width: 30vw;
+  margin: 1em auto;
+  font-size: 2em;
+  text-align: center;
+  border: .1em solid black;
+  border-radius: .3em;
+}
