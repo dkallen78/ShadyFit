@@ -1,3 +1,9 @@
+function clearElement() {
+  for (let i = 0; i < arguments.length; i++) {
+    arguments[i].innerHTML = "";
+  }
+}
+
 function insertTextNode(element, text) {
   let node = document.createTextNode(text);
   element.appendChild(node);
@@ -50,10 +56,14 @@ function fadeOut() {
 function workout() {
   //
   //Starts the workout logic
-  function startWorkout() {
+  function startWorkout(sets) {
     //
     //Shows the individual exercise
     function showExercise(data) {
+      exerciseCount++;
+      if (exerciseCount === 6) {
+        startButton.innerHTML = "Rest";
+      }
       //
       //Uses the data to fill the workoutWindow
       exerciseImg.src = data.images[0];
@@ -67,16 +77,34 @@ function workout() {
       //
       //Cycles between the workout preview images
       let imgCount = 0;
-      let exImg = setInterval(function() {
+      clearInterval(exImg);
+      exImg = setInterval(function() {
         imgCount++;
         exerciseImg.src = data.images[imgCount % 2];
       }, 500);
       //
       //Updates the timer aproximately ever 10 ms
-      let timer = setInterval(function() {
+      clearInterval(timer);
+      timer = setInterval(function() {
         let timeCheck = new Date();
         let timeElapsed = (timeCheck - workoutStartTime) / 1000;
         timerDiv.innerHTML = timeElapsed.toFixed(2, 10);
+      }, 10);
+    }
+
+    function exerciseRest(time) {
+      exerciseImg.src = "";
+      exerciseNumber.innerHTML = 0;
+      exerciseName.innerHTML = "Take a break";
+      clearInterval(exImg);
+      clearInterval(timer);
+
+      let restTimerStart = new Date();
+
+      timer = setInterval(function() {
+        let timeCheck = new Date();
+        let timeElapsed = (timeCheck - restTimerStart) / 1000;
+        timerDiv.innerHTML = (120 - timeElapsed).toFixed(2, 10);
       }, 10);
     }
     //
@@ -94,23 +122,73 @@ function workout() {
     //
     //A container for the timer
     let timerDiv = makeDiv("timerDiv");
+    let timer = null;
+    let exImg = null;
     //
     //The individual data for each exercise
     let exercise1 = {
       name: "Jumping Jacks",
       count: 10,
       images: ["jumpingJacks1.png", "jumpingJacks2.png"]
-    }
+    };
+    let exercise2 = {
+      name: "Squats",
+      count: 5,
+      images: ["squats1.png", "squats2.png"]
+    };
+    let exercise3 = {
+      name: "Push-ups",
+      count: 5,
+      images: ["pushUps1.png", "pushUps2.png"]
+    };
+    let exercise4 = {
+      name: "High Knees",
+      count: 10,
+      images: ["highKnees1.png", "highKnees2.png"]
+    };
+    let exercise5 = {
+      name: "Climbers",
+      count: 10,
+      images: ["climbers1.png", "climbers2.png"]
+    };
+    let exercise6 = {
+      name: "Plank Jump-ins",
+      count: 5,
+      images: ["plankJumpIns1.png", "plankJumpIns2.png"]
+    };
+    let exercises = [exercise1, exercise2, exercise3, exercise4, exercise5, exercise6];
+
+    let exerciseCount = 0
     //
     //Removes my logo so I can put the other stuff there
     workoutWindow.removeChild(logoDiv);
-
+    /*console.log(exercises.length);
+    if (exerciseCount <= exercises.length - 1) {
+      startButton.innerHTML = "Next Exercise";
+      startButton.onclick = function() {
+        console.log(exerciseCount);
+        showExercise(exercises[exerciseCount]);
+      }
+    } else {
+      startbutton.innerHTML = "Rest";
+      startButton.onclick = function() {
+        exerciseRest(120000);
+      }
+    }*/
     startButton.innerHTML = "Next Exercise";
-    startButton.onclick = "";
+    startButton.onclick = function() {
+      console.log(exerciseCount);
+      if (exerciseCount <= exercises.length - 1) {
+        showExercise(exercises[exerciseCount]);
+      } else {
+        exerciseRest(120000);
+      }
+
+    }
     //
     //Starts the timer and shows the exercise
     let workoutStartTime = new Date();
-    showExercise(exercise1);
+    showExercise(exercises[0]);
   }
   //
   //Makes the window that shows the workout information
@@ -131,12 +209,15 @@ function workout() {
   //the workoutWindow
   let startButton = makeDiv("startButton");
   insertTextNode(startButton, "Start Workout");
-  startButton.onclick = startWorkout;
+
   document.body.appendChild(startButton);
   //
   //Shows the startButton after the logo is done showing
   logoDiv.addEventListener("transitionend", function(event) {
     event.stopPropagation();
     startButton.style.filter = "opacity(100%)";
+    startButton.onclick = function() {
+      startWorkout(3);
+    }
   });
 }
