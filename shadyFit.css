@@ -1,0 +1,253 @@
+/*------------------------------------------------------------/
+/ Global Styles                                               /
+/------------------------------------------------------------*/
+
+body {
+  background-color: #ddd;
+  font-family: sans-serif;
+}
+
+#workoutWindow {
+  height: 80vh;
+  width: 90vw;
+  margin: 0 auto;
+  border: .2em solid black;
+  border-radius: .3em;
+  background-color: white;
+}
+
+#startButton {
+  width: 45vw;
+  margin: 0 auto;
+  margin-top: 4vh;
+  cursor: default;
+  text-align: center;
+  font-size: 1.5em;
+  border-bottom: .2em solid rgba(0, 0, 0, 0);
+  filter: opacity(0%);
+  transition: border 500ms, filter 1000ms;
+}
+
+#startButton:hover {
+  border-bottom: .2em solid red;
+}
+
+/*------------------------------------------------------------/
+/ Intro Styles                                                /
+/------------------------------------------------------------*/
+
+#logoDiv {
+  width: 50vw;
+  margin: 0 auto;
+  margin-top: 20vh;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 2em;
+  border: .1em solid black;
+  border-radius: .3em;
+  filter: opacity(0%);
+  transition: filter 2000ms;
+}
+
+/*------------------------------------------------------------/
+/ Exercise Window Styles                                      /
+/------------------------------------------------------------*/
+
+#exercisePreview {
+  height: 55vh;
+  text-align: center;
+}
+
+#setCountBox {
+  position: absolute;
+  margin: .1em;
+  padding: .1em;
+  cursor: default;
+  border: .2em solid black;
+  border-radius: .3em;
+}
+
+#setText {
+  display: inline-block;
+  margin-right: .2em;
+}
+
+#setCount {
+  display: inline-block;
+}
+
+#exerciseImg {
+  height: 100%;
+}
+
+#exerciseInfo {
+  display: flex;
+  justify-content: center;
+  margin-top: .5em;
+  cursor: default;
+}
+
+#exerciseNumber {
+  margin-right: .25em;
+  padding: .25em;
+  font-size: 2em;
+  color: white;
+  background-color: black;
+  border-radius: .3em;
+}
+
+#exerciseName {
+  margin-bottom: .8em;
+  font-size: 1.5em;
+  border-bottom: .2em solid black;
+}
+
+#timerDiv {
+  width: 30vw;
+  margin: 1em auto;
+  font-size: 2em;
+  text-align: center;
+  cursor: default;
+  border: .1em solid black;
+  border-radius: .3em;
+}
+
+#milliseconds {
+  position: fixed;
+  margin-top: 1%;
+  font-size: .5em;
+}
+
+/*------------------------------------------------------------/
+/ Workout Summary Styles                                      /
+/------------------------------------------------------------*/
+
+#timeText {
+  width: 35vw;
+  margin: 1em auto .5em;
+  font-size: 1.5em;
+  text-align: center;
+
+}
+
+#totalTime {
+  width: 30vw;
+  margin: 0 auto 1em;
+  text-align: center;
+  font-size: 2em;
+  border: .1em solid black;
+  border-radius: .3em;
+}
+
+#summaryDiv {
+  width: 80vw;
+  margin: 0 auto;
+  font-size: 1.5em;
+  border: .1em solid black;
+  border-radius: .3em;
+}
+
+.workoutSummary {
+  display: flex;
+  justify-content: flex-start;
+  margin: .1em;
+}
+
+.summaryNumber {
+  width: 12vw;
+  padding: 0 .1em;
+  text-align: center;
+  color: white;
+  background-color: black;
+  border-radius: .3em;
+}
+
+.summaryExercise {
+  margin-left: .2em;
+}
+
+/*------------------------------------------------------------/
+/ Landscape Styles                                            /
+/------------------------------------------------------------*/
+
+@media screen and (orientation:landscape) {
+  #workoutWindow {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 80vh;
+    width: 90vw;
+    margin: 0 auto;
+    border: .2em solid black;
+    border-radius: .3em;
+    background-color: white;
+  }
+
+  #logoDiv {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    height: 11vh;
+  }
+
+  #startButton {
+    width: 26vw;
+  }
+
+  #exercisePreview {
+    height: 80vh;
+    text-align: left;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+  }
+
+  #exerciseImg {
+    height: 100%;
+  }
+
+  #exerciseInfo {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    height: 15vh;
+    margin-top: 15vh;
+  }
+
+  #exerciseNumber {
+    margin-right: .25em;
+    padding: .25em;
+    font-size: 2em;
+    color: white;
+    background-color: black;
+    border-radius: .3em;
+  }
+
+  #exerciseName {
+    margin-bottom: .8em;
+    font-size: 1.5em;
+    border-bottom: .2em solid black;
+  }
+
+  #timerDiv {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    height: 11vh;
+  }
+
+  #timeText {
+    margin: auto auto 0;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  #totalTime {
+    width: 20vw;
+    margin: .2em auto auto;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  #summaryDiv {
+    width: 50vw;
+    margin: auto;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+}
